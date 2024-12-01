@@ -1,0 +1,20 @@
+.custom-button {
+    background: linear-gradient(145deg, #000000, #383838);
+    border: none;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    background-size: 200% 100%; 
+    background-position: right bottom; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer; 
+}
+
+.custom-button:hover {
+    background: linear-gradient(145deg, #777777, #000000);
+    background-position: left bottom; 
+    transform: translateY(-2px);
+}

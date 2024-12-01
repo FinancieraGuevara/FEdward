@@ -1,0 +1,226 @@
+
+
+.h100{
+    height: 100%;
+}
+
+.v100{
+    width: 100%;
+}
+
+.view100{
+    width: 100vw!important;
+}
+
+.btn-back{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    max-height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.color{
+    color: rgb(181, 165, 125);
+}
+
+.negro{
+    color: #000;
+}
+
+.espaciado{
+    margin: 50px!important;
+}
+
+.eb{
+    margin-bottom: 20px!important;
+}
+
+.et{
+    margin-top: 20px!important;
+}
+
+.er{
+    margin-left: 10px!important;
+}
+
+.content {
+    border: 4px solid #000!important;
+    border-radius: 6px!important;
+}
+
+.w100{
+    min-width: 100%!important;
+}
+
+.w80{
+    max-width: 80%;
+}
+
+.fondo-color{
+    background-color: #99824B;
+}
+
+.color-b{
+    color:#99824B!important;
+    height: 2px;
+
+}
+
+.btn2 {
+    
+    background: linear-gradient(90deg, #FFD97D, #99824B); /* Degradado ajustado */
+    color: black; /* Texto en blanco */
+    padding: 10px 20px; /* Espaciado interno*/
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 1.0rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    transition: background 0.3s ease; /* Transición suave al pasar el mouse */
+    margin-top: 15px!important;
+  }
+  
+  .btn2:hover {
+    background: linear-gradient(90deg, #99824B, #FFD97D); /* Invertir el degradado en hover */
+  }
+  
+  
+  .flechita{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+  }
+
+.download {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+
+    &:hover {
+        color: black; /* Example hover effect */
+    }
+}
+
+.w80p{
+    width: 100%!important;
+}
+
+.custom-button-b{
+    background: linear-gradient(90deg, #111217 0%, #5C627D 100%);
+    
+}
+
+
+/*Gino*/
+
+.detalle{
+    min-height: 100vh;
+    margin: auto;
+    background: linear-gradient(180deg,#00203D  0%,#0056A3  80%);
+}
+
+
+
+/*btn*/
+.btn-mes {
+    background: linear-gradient(90deg, #F28907 0%, #8C4F04 100%);
+    font-size: 16px;
+    // cursor: pointer;
+    transition: background 0.3s ease;
+
+    width: 200px;
+}
+
+.btn-continuar {
+    background-image: linear-gradient(90deg, #6CC1EB 0%, #3D6D85 100%);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 300px;
+}
+/*Formulario soles*/
+.form-soles {
+    height: 60px;
+    color: white;
+    background-color: transparent;
+    &::placeholder {
+        color: white; /* Color blanco para el placeholder */
+    }
+    border-color: #6CC1EB;
+}
+
+/*flecha*/
+.ico i{
+    height: 15px;
+}
+
+/*Barra*/
+
+.barra{
+    width: 80%;
+}
+
+.progress-bar-container {
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #000; /* Borde opcional */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 100%; /* Ancho completo del contenedor */
+    height: 20px; /* Altura de la barra */
+    overflow: hidden; /* Ocultar el desbordamiento */
+    position: relative; /* Posicionamiento relativo para el contenido interno */
+}
+
+.progress-bar {
+    background-color: #F28907; /* Color de la barra de carga */
+    width: 50%; /* Cargada hasta el 50% */
+    height: 100%; /* Altura completa del contenedor */
+    transition: width 0.3s ease; /* Transición suave al cambiar el ancho */
+}
+
+.footer{
+    color: white!important;
+}
+
+/**/
+.m-continuar{
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+
+.v100vh{
+    min-height: 100vh!important;
+}
+
+.ico i:hover{
+    cursor: pointer;
+    
+}
+
+.ico p:hover{
+    cursor: pointer;
+    
+}
+
+/* GINN */
+
+.buttons{
+    background: linear-gradient(90deg, #F28907 0%, #8C4F04 100%);
+    
+}

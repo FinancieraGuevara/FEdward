@@ -1,0 +1,29 @@
+<div class="login-container">
+  <div class="login-form">
+    <div class="logo">
+      <img src="https://i.imgur.com/nQrwesi.png" alt="Logo" />
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="username" placeholder="Nombre de usuario">
+        <div class="error-message" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          <span *ngIf="loginForm.get('username')?.errors?.['required']">El nombre de usuario es obligatorio.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+        <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</span>
+        </div>
+      </div>
+      <button type="submit" class="btn-login" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+  </div>
+  <div class="login-footer">
+    <div class="line"></div>
+    <div class="brand">I N S O</div>
+    <div class="line"></div>
+    <p class="copyright">Copyright © 2024, All rights reserved.</p>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+nopading{
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.h100{
+    height: 100%;
+}
+
+.v100{
+    width: 100%;
+}
+
+.view100{
+    width: 100vw!important;
+}
+
+.btn-back{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    max-height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+        background-color: #000;
+        color: #fff;
+    }
+}
+
+.color{
+    color: rgb(181, 165, 125);
+}
+
+.negro{
+    color: #000;
+}
+
+.espaciado{
+    margin: 50px!important;
+}
+
+.eb{
+    margin-bottom: 20px!important;
+}
+
+.et{
+    margin-top: 20px!important;
+}
+
+.er{
+    margin-left: 10px!important;
+}
+
+.content {
+    border: 4px solid #6CC1EB !important;
+    border-radius: 6px!important;
+}
+
+.w100{
+    min-width: 100%!important;
+}
+
+.w80{
+    max-width: 80%;
+}
+
+.fondo-color{
+    background-color: #99824B;
+}
+
+.color-b{
+    color:#99824B!important;
+    height: 2px;
+
+}
+
+.btn {
+
+    background: linear-gradient(90deg, #6CC1EB 0%, #3D6D85 100%);
+    color: black; /* Texto en blanco */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 1.0rem; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    transition: background 0.3s ease; /* Transición suave al pasar el mouse */
+    margin-top: 15px!important;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(90deg, #3D6D85 0%, #6CC1EB 100%);
+  }
+  
+  
+  .flechita{
+    margin-left: 160px;
+    color: #F28907;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+  }
+
+.download {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+
+    &:hover {
+        color: black; /* Example hover effect */
+    }
+}
+
+.modalstyle {
+    margin: auto !important;
+    padding: auto !important;
+}
+
+.progress-bar{
+    background: #F28907;
+}
+
+.crono{
+    margin: 0px;
+
+    background: linear-gradient(180deg, #0056A3 0%, #00203D 100%);
+    min-height: 100%; 
+    min-height: 100vh;
+}
+
+@media (max-height: 600px) {
+  .crono {
+      min-height: auto; /* En pantallas más pequeñas, ajusta el alto del fondo según el contenido */
+  }
+}

@@ -1,0 +1,30 @@
+<div class="sidebar">
+    <div class="logo">
+      <img src="https://i.imgur.com/nQrwesi.png" alt="Logo" class="img-fluid">
+    </div>
+    <nav class="nav-menu">
+      <a routerLink="/owner/cuenta" routerLinkActive="active" class="nav-item">
+        <i class="fa-regular fa-circle-user"></i>
+        <span>Cuenta</span>
+      </a>
+      <a routerLink="/owner/historial" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <span>Historial</span>
+      </a>
+      <a routerLink="/owner/prestamos" routerLinkActive="active" class="nav-item">
+        <i class="fa-solid fa-dollar-sign"></i>
+        <span>Prestamos</span>
+      </a>
+    </nav>
+    <div class="logout">
+      <button (click)="cerrarSesion()" class="btn-logout">
+        <i class="fa-regular fa-circle-left"></i>
+        <span>Cerrar Sesión</span>
+      </button>
+    </div>
+  </div>
+  
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+
