@@ -1,0 +1,97 @@
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$background-color: #ecf0f1;
+$text-color: #ffffff;
+$hover-color: rgba(255, 255, 255, 0.1);
+
+.btn-change-password {
+    background-color: $accent-color;
+    color: $text-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+    &:hover {
+        background-color: darken($accent-color, 10%);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transform: translateY(-2px);
+    }
+
+    i {
+        margin-right: 8px;
+    }
+}
+
+.modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: $background-color;
+}
+
+.modal-header {
+    background-color: $primary-color;
+    color: $text-color;
+    border-bottom: none;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: $secondary-color;
+}
+
+.input-group-text {
+    background-color: lighten($background-color, 5%);
+    border-right: none;
+    color: $secondary-color;
+}
+
+.form-control {
+    border-left: none;
+    background-color: $background-color;
+    color: $secondary-color;
+
+    &:focus {
+        box-shadow: none;
+        border-color: $accent-color;
+    }
+}
+
+.btn-primary, .btn-secondary {
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: $text-color;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+}
+
+.btn-primary {
+    background-color: $accent-color;
+    border-color: $accent-color;
+
+    &:hover {
+        background-color: darken($accent-color, 10%);
+        border-color: darken($accent-color, 10%);
+    }
+}
+
+.btn-secondary {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+        border-color: darken($secondary-color, 10%);
+    }
+}

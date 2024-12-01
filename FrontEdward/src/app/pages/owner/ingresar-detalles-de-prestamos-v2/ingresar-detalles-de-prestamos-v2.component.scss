@@ -1,0 +1,180 @@
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$background-color: #ecf0f1;
+$text-color: #ffffff;
+$hover-color: rgba(255, 255, 255, 0.1);
+
+.ingresar-detalles-prestamo {
+  background-color: $primary-color;
+  color: $text-color;
+  min-height: 100vh;
+  padding: 2rem 0;
+  font-weight: 600;
+  font-style: italic;
+
+  .container {
+    max-width: 800px;
+  }
+
+  header {
+    margin-bottom: 2rem;
+
+    h1 {
+      color: $accent-color;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .progress-container {
+      background-color: $secondary-color;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .progress-bar {
+        width: 50%;
+        height: 100%;
+        background-color: $accent-color;
+      }
+    }
+  }
+
+  .back-navigation {
+    margin-bottom: 2rem;
+
+    .btn-back {
+      background-color: transparent;
+      border: none;
+      color: $accent-color;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: lighten($accent-color, 10%);
+      }
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $accent-color;
+    }
+
+    .input-group {
+      display: flex;
+
+      .input-group-text {
+        background-color: $secondary-color;
+        color: $text-color;
+        border: none;
+      }
+
+      input {
+        flex-grow: 1;
+        background-color: $background-color;
+        border: none;
+        padding: 0.5rem;
+        color: $primary-color;
+      }
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .loan-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    .loan-option {
+      background-color: $secondary-color;
+      border: none;
+      color: $text-color;
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 48%;
+
+      &:hover:not(:disabled) {
+        background-color: lighten($secondary-color, 10%);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &.selected {
+        background-color: $accent-color;
+      }
+
+      .duration {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .interest {
+        display: block;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .form-actions {
+    text-align: center;
+
+    .btn-confirm {
+      background-color: $accent-color;
+      color: $text-color;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background-color: darken($accent-color, 10%);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  footer {
+    margin-top: 2rem;
+    text-align: center;
+
+    hr {
+      border-color: $secondary-color;
+    }
+
+    .copyright {
+      color: $accent-color;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  }
+}

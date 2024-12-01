@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <h2 class="mb-4">Pagos</h2>
+
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <select [(ngModel)]="filtroEstado" class="form-select">
+        <option value="">Todos los estados</option>
+        <option value="Pagado">Pagado</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Vencido">Vencido</option>
+        <option value="Deuda Judicial">Deuda Judicial</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary">Próximos a vencer</button>
+    </div>
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar cliente...">
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>N° Cronograma</th>
+        <th>N° Cuota</th>
+        <th>Fecha vencimiento</th>
+        <th>Estado</th>
+        <th>Cliente</th>
+        <th>Monto/Mora</th>
+        <th>Total cuota</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of filtrarPagos()">
+        <td>{{ pago.nroCronograma }}</td>
+        <td>{{ pago.nroCuota }}</td>
+        <td>{{ pago.fechaVencimiento }}</td>
+        <td>
+          <span class="badge" [ngClass]="{
+            'bg-success': pago.estado === 'Pagado',
+            'bg-primary': pago.estado === 'Pendiente',
+            'bg-warning': pago.estado === 'Vencido',
+            'bg-danger': pago.estado === 'Deuda Judicial'
+          }">{{ pago.estado }}</span>
+        </td>
+        <td>{{ pago.cliente }}</td>
+        <td>S/ {{ pago.montoMora.toFixed(2) }}</td>
+        <td>S/ {{ pago.totalCuota.toFixed(2) }}</td>
+        <td>
+            <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detalleModal">Ver detalle</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detalleModalLabel">Detalle del Pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" *ngIf="pagoSeleccionado">
+          <p><strong>N° Cronograma:</strong> {{ pagoSeleccionado.id }}</p>
+          <p><strong>N° Cuota:</strong> {{ pagoSeleccionado.nmrcuota }}</p>
+          <p><strong>Fecha de Pago:</strong> {{ pagoSeleccionado.fechaPago }}</p>
+          <p><strong>Cuota:</strong> S/ {{ pagoSeleccionado.cuota.toFixed(2) }}</p>
+          <p><strong>Interés:</strong> S/ {{ pagoSeleccionado.interes.toFixed(2) }}</p>
+          <p><strong>Capital Amortizado:</strong> S/ {{ pagoSeleccionado.capitalamortizado.toFixed(2) }}</p>
+          <p><strong>Saldo Final:</strong> S/ {{ pagoSeleccionado.saldofinal.toFixed(2) }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

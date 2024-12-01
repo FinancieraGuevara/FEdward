@@ -10,6 +10,7 @@ export const routes: Routes = [
       {
         path: 'owner',
         loadChildren : () => import ("././pages/owner/owner.routes").then(o => o.ownerRoutes),
+        canActivate: [authGuard]
       },
       { 
         path: 'prestamos',
