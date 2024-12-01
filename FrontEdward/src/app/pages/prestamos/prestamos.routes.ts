@@ -6,7 +6,6 @@ export const prestamosRoutes: Routes = [
         path: '',
         component: PrestamosLayoutComponent,
         children: [
-            { path: '**', redirectTo: 'cronograma' }//De ejemplo
         ]
     }
 ];

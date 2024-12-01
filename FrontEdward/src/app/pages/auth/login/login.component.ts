@@ -32,7 +32,7 @@ export class LoginComponent {
   
       this.authService.login(data).subscribe({
         next: () => {
-          this.router.navigate(['/owner']); 
+          this.router.navigate(['/owner/historial']); 
   
           alert('Sesión iniciada correctamente');
         },

@@ -32,6 +32,10 @@ $hover-color: rgba(255, 255, 255, 0.1);
     color: $accent-color !important;
   }
 
+  .list-unstyled{
+    color: #000;
+  }
+
   .btn-outline-warning {
     color: $accent-color;
     border-color: $accent-color;

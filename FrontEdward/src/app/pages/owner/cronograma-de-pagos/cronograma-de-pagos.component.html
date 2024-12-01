@@ -1,0 +1,101 @@
+<div class="cronograma-pagos">
+  <div class="container">
+    <header>
+      <h1 class="titulo">Cronograma de pagos</h1>
+      <div class="barra-progreso">
+        <div class="progreso" style="width: 75%"></div>
+      </div>
+    </header>
+
+    <nav class="navegacion-atras">
+      <button type="button" class="btn-atras" (click)="volver()">
+        <i class="fa-solid fa-chevron-left"></i>
+        <span>Atrás</span>
+      </button>
+    </nav>
+
+    <main class="contenido">
+      <section class="detalles-prestamo">
+        <h2 class="subtitulo">Detalles del préstamo</h2>
+        <div class="grid-detalles">
+          <div class="detalle-item">
+            <p class="etiqueta">Moneda:</p>
+            <p class="valor">Soles</p>
+          </div>
+          <div class="detalle-item">
+            <p class="etiqueta">Monto del préstamo:</p>
+            <p class="valor">S/ {{ ultimoDetallePrestamo?.prestamo?.monto | number:'1.2-2' }}</p>
+          </div>
+          <div class="detalle-item">
+            <p class="etiqueta">Plazo (N° de cuotas):</p>
+            <p class="valor">{{ ultimoDetallePrestamo?.cronograma?.length }}</p>
+          </div>
+          <div class="detalle-item">
+            <p class="etiqueta">Total intereses:</p>
+            <p class="valor">S/ {{ ultimoDetallePrestamo?.interesTotal | number:'1.2-2' }}</p>
+          </div>
+          <div class="detalle-item">
+            <p class="etiqueta">Monto total a pagar:</p>
+            <p class="valor">S/ {{ ultimoDetallePrestamo?.pagarTotal | number:'1.2-2' }}</p>
+          </div>
+          <div class="detalle-item">
+            <p class="etiqueta">Día de pago:</p>
+            <p class="valor">{{ ultimoDetallePrestamo?.fechaInicio | date:'dd' }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tabla-cronograma">
+        <h2 class="subtitulo">Cronograma de pagos</h2>
+        <div class="tabla-responsive">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>N° Cuota</th>
+                <th>Fecha de pago</th>
+                <th>Saldo capital</th>
+                <th>Amortización</th>
+                <th>Interés</th>
+                <th>Cuota</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cuota of ultimoDetallePrestamo?.cronograma">
+                <td>{{ cuota.nmrcuota }}</td>
+                <td>{{ cuota.fechaPago }}</td>
+                <td>S/ {{ cuota.saldofinal | number:'1.2-2' }}</td>
+                <td>S/ {{ cuota.capitalamortizado | number:'1.2-2' }}</td>
+                <td>S/ {{ cuota.interes | number:'1.2-2' }}</td>
+                <td>S/ {{ cuota.cuota | number:'1.2-2' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="acciones">
+        <button class="btn btn-secundario" data-bs-toggle="modal" data-bs-target="#modalCancelarPrestamo">Cancelar préstamo</button>
+        <button class="btn btn-primario" (click)="continue()">Continuar</button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal de confirmación para cancelar préstamo -->
+<div class="modal fade" id="modalCancelarPrestamo" tabindex="-1" aria-labelledby="modalCancelarPrestamoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCancelarPrestamoLabel">Confirmar cancelación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas cancelar el préstamo? Esta acción no se puede deshacer.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secundario" data-bs-dismiss="modal">No, mantener préstamo</button>
+        <button type="button" class="btn btn-primario" data-bs-dismiss="modal" (click)="cancelarPrestamo()">Sí, cancelar préstamo</button>
+      </div>
+    </div>
+  </div>
+</div>

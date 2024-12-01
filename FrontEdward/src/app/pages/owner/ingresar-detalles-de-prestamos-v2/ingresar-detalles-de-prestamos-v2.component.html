@@ -1,0 +1,72 @@
+<div class="ingresar-detalles-prestamo">
+  <div class="container">
+    <header>
+      <h1>Ingrese los detalles del préstamo</h1>
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </header>
+
+    <nav class="back-navigation">
+      <button class="btn-back" (click)="volver()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z"/>
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+        </svg>
+        <span>Volver</span>
+      </button>
+    </nav>
+
+    <main>
+      <form [formGroup]="prestamoForm" (ngSubmit)="continue()">
+        <div class="form-section">
+          <label for="monto">Ingrese el monto</label>
+          <div class="input-group">
+            <span class="input-group-text">S/</span>
+            <input type="text" 
+                   id="monto"
+                   class="form-control" 
+                   formControlName="monto"  
+                   (keypress)="validateInput($event)"
+                   placeholder="0.00" />
+          </div>
+          <div class="error-message" *ngIf="prestamoForm.get('monto')?.invalid && prestamoForm.get('monto')?.touched">
+            El monto debe ser mayor a 0 y no exceder 5000.
+          </div>
+        </div>
+
+        <div class="loan-options">
+          <button type="button" 
+                  class="loan-option"
+                  (click)="selectTime(1)"
+                  [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000 || selectedTimeButton === 1"
+                  [class.selected]="selectedTimeButton === 1">
+            <span class="duration">1 mes</span>
+            <span class="interest">10% de interés</span>
+          </button>
+          <button type="button" 
+                  class="loan-option"
+                  (click)="selectTime(6)"
+                  [disabled]="prestamoForm.get('monto')?.value <= 0 || prestamoForm.get('monto')?.value > 5000 || selectedTimeButton === 6"
+                  [class.selected]="selectedTimeButton === 6">
+            <span class="duration">6 meses</span>
+            <span class="interest">20% de interés</span>
+          </button>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-confirm" 
+                  type="submit" 
+                  [disabled]="prestamoForm.invalid || !selectedTimeButton">
+            Confirmar
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <hr>
+      <p class="copyright">Copyright © 2024, All rights reserved.</p>
+    </footer>
+  </div>
+</div>

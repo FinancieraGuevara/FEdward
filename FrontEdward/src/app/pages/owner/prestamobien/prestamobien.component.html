@@ -1,0 +1,38 @@
+<div class="prestamo-exitoso">
+  <div class="container">
+    <header class="text-center">
+      <h1 class="mb-4">Préstamo realizado con éxito</h1>
+      <div class="progress-bar-container mb-5">
+        <div class="progress-bar"></div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="confirmation text-center">
+        <p class="confirmation-text">Préstamo exitoso</p>
+        <i class="fa-regular fa-circle-check fa-4x confirmation-icon"></i>
+        <div class="amount-info">
+          <h2>Monto a desembolsar</h2>
+          <p class="amount">S/. {{ultimoDetallePrestamo?.prestamo?.monto | number:'1.2-2'}}</p>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button class="btn btn-primary btn-lg" (click)="volver()">
+          Volver al inicio
+        </button>
+        <div class="download-section">
+          <p>Para ver su cronograma en formato PDF, descargue:</p>
+          <button class="btn btn-secondary" (click)="downloadPdf()">
+            Descargar PDF
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center mt-5">
+      <hr>
+      <p class="copyright">Copyright © 2024, All rights reserved.</p>
+    </footer>
+  </div>
+</div>

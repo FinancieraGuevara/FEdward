@@ -1,0 +1,82 @@
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$background-color: #ecf0f1;
+$text-color: #ffffff;
+$hover-color: rgba(255, 255, 255, 0.1);
+
+.container-fluid {
+  padding: 20px;
+  background-color: $background-color;
+  color: $primary-color;
+}
+
+h2 {
+  color: $primary-color;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.table {
+  margin-top: 20px;
+  background-color: $text-color;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  th {
+    background-color: $primary-color;
+    color: $text-color;
+    font-weight: bold;
+  }
+
+  td {
+    color: $secondary-color;
+  }
+
+  tr:hover {
+    background-color: $hover-color;
+  }
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.btn-info {
+  background-color: $secondary-color;
+  border-color: $accent-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: darken($accent-color, 10%);
+    border-color: darken($accent-color, 10%);
+  }
+}
+
+.form-select, .form-control, .btn {
+  border-radius: 20px;
+  border: 1px solid $primary-color;
+}
+
+.form-select, .form-control {
+  color: $primary-color;
+  background-color: $text-color;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($accent-color, 0.25);
+    border-color: $accent-color;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  color: $text-color;
+
+  &:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
