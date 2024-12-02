@@ -7,7 +7,7 @@ import { IngresarDetallesDePrestamosV2Component } from './ingresar-detalles-de-p
 import { CronogramaDePagosComponent } from './cronograma-de-pagos/cronograma-de-pagos.component';
 import { PrestamobienComponent } from './prestamobien/prestamobien.component';
 import { PagosComponent } from './pagos/pagos.component';
-
+import { DeudoresComponent } from './deudores/deudores.component';
 export const ownerRoutes: Routes = [
     {
         path: '',
@@ -16,6 +16,7 @@ export const ownerRoutes: Routes = [
             { path: 'cuenta', component: CuentaComponent},
             { path: 'pagos', component: PagosComponent},
             { path: 'historial', component: HistorialPagosComponent, pathMatch: 'full'  },
+            { path: 'deudores', component: DeudoresComponent},
             { path: 'validar-informacion', component: ValidarInformacionComponent},
             { path: 'validar-informacion/tipo-prestamo', component: IngresarDetallesDePrestamosV2Component},
             { path: 'validar-informacion/tipo-prestamo/detalle-prestamo', component:CronogramaDePagosComponent },
