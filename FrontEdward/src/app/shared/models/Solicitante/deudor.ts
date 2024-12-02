@@ -3,5 +3,5 @@ export interface DeudoresDTO {
     numero: string;
     nombre_completo: string;
     tipo: string;
-    deduda: number;
+    deuda: number;
   }

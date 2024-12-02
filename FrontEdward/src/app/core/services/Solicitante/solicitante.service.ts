@@ -34,7 +34,7 @@ export class SolicitanteService {
 }
 
 findDeudoresAndMoney(): Observable<DeudoresDTO[]> {
-  return this.http.get<DeudoresDTO[]>(`${this.apiUrl}/deudoresYDinero`, {
+  return this.http.get<DeudoresDTO[]>(`${this.apiUrl}/solicitantes/deudoresYDinero`, {
     withCredentials: true
   });
 }

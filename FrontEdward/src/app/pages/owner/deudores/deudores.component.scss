@@ -1,0 +1,59 @@
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$background-color: #ecf0f1;
+$text-color: #ffffff;
+$hover-color: rgba(255, 255, 255, 0.1);
+
+.historial-pagos {
+  color: $text-color;
+  font-weight: 600;
+  font-style: italic;
+
+  .backgroundcontainer {
+    background: linear-gradient($primary-color, $secondary-color);
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+
+  .table {
+    background-color: rgba($background-color, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .card {
+    background-color: rgba($background-color, 0.1) !important;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .text-warning {
+    color: $accent-color !important;
+  }
+
+  .list-unstyled{
+    color: #000;
+  }
+
+  .btn-outline-warning {
+    color: $accent-color;
+    border-color: $accent-color;
+    &:hover {
+      background-color: $accent-color;
+      color: $text-color;
+    }
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: rgba($accent-color, 0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .historial-pagos {
+    .container {
+      padding: 10px;
+    }
+  }
+}
