@@ -143,8 +143,26 @@ export class PagosComponent {
     });
   }
 
-  comprobante(idPrestamo: number , nmrCuota:number )
-  {
-    this.prestamoservice.downloadComprobantePago(idPrestamo,nmrCuota).subscribe();
+  comprobante(idPrestamo: number, nmrCuota: number) {
+    // Llamamos al servicio para obtener el archivo
+    this.prestamoservice.downloadComprobantePago(idPrestamo, nmrCuota).subscribe(
+      (blob: Blob) => {
+        // Una vez recibido el archivo, lo descargamos
+        this.downloadFile(blob, `comprobante_${idPrestamo}_cuota_${nmrCuota}.pdf`);
+      },
+      error => {
+        console.error('Error al descargar el comprobante:', error);
+      }
+    );
+  }
+  
+  private downloadFile(blob: Blob, fileName: string) {
+    // Crear un enlace temporal para la descarga
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName; // El nombre del archivo para la descarga
+    a.click(); // Simula el clic para descargar
+    window.URL.revokeObjectURL(url); // Libera la memoria del objeto URL
   }
 }

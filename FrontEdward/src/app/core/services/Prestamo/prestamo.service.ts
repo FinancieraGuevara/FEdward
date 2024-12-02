@@ -56,8 +56,7 @@ export class PrestamoService {
     
     // Hacemos una solicitud GET para descargar el archivo PDF
     return this.http.get(url, {
-      responseType: 'blob', // Especificamos que esperamos un archivo binario
-      headers: new HttpHeaders().set('Accept', 'application/pdf') // Esperamos un PDF como respuesta
+      responseType: 'blob', // Especificamos que esperamos un archivo binario 
     });
   }
 
