@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { DetallePrestamo } from '../../models/detallePrestamo/detalle-prestamo';
-import { DetallePrestamoService } from '../../../core/services/detallePrestamo/detalle-prestamo.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { Prestamoresponse } from '../../models/PrestamoResponse/prestamoresponse';
+import { PrestamoService } from '../../../core/services/Prestamo/prestamo.service';
 @Component({
   selector: 'app-historial-pagos',
   standalone: true,
@@ -11,38 +10,49 @@ import { Router } from '@angular/router';
   templateUrl: './historial-pagos.component.html',
   styleUrl: './historial-pagos.component.scss'
 })
-export class HistorialPagosComponent {
+export class HistorialPagosComponent implements OnInit {
+  prestamosCompletados: Prestamoresponse[] = [] as Prestamoresponse[]; // Cambié el nombre de la propiedad
+  prestamoSeleccionado: Prestamoresponse = {} as Prestamoresponse; // Para almacenar el préstamo seleccionado
 
-  // private finalizados: boolean[] = [];
-  detallePrestamos: DetallePrestamo[] = [] as DetallePrestamo[]
-  detalleSeleccionado: DetallePrestamo = {} as DetallePrestamo;
-
-  private detallePrestamoService = inject(DetallePrestamoService);
+  private prestamoService = inject(PrestamoService);
   private router = inject(Router);
+  montoTotalAPagar: number = 0;
 
-  ngOnInit():void {
-    this.obtenerDetallePrestamos();
+  ngOnInit(): void {
+    this.obtenerPrestamosCompletados();
   }
 
-  obtenerDetallePrestamos(): void {
-    console.log('Iniciando obtención de detalles de préstamos...');
-    this.detallePrestamoService.getAllDetallePrestamos().subscribe(
-      (detallePrestamo) => {
-        this.detallePrestamos = detallePrestamo;
-        // this.finalizados = this.cargarEstadosFinalizados();
-        console.log('Detalles de préstamos obtenidos:', this.detallePrestamos);
+  obtenerPrestamosCompletados(): void {
+    console.log('Iniciando obtención de préstamos completados...');
+    this.prestamoService.getPrestamosCompleted().subscribe(
+      (prestamos) => {
+        this.prestamosCompletados = prestamos;
+        console.log('Préstamos completados obtenidos:', this.prestamosCompletados);
+      },
+      error => {
+        console.error('Error al obtener los préstamos completados', error);
       }
     );
   }
 
-  mostrarDetalle(detallePrestamo: DetallePrestamo): void {
-    this.detalleSeleccionado = detallePrestamo;
-    console.log('Detalle del préstamo:', detallePrestamo);
+  mostrarDetalle(prestamo: Prestamoresponse): void {
+    this.prestamoSeleccionado = prestamo;
+    console.log('Préstamo seleccionado:', this.prestamoSeleccionado);
+    this.calculateMontoTotalAPagar(); // Calcular el monto total cuando se seleccione un préstamo
   }
+  
+  
 
-  realizarPrestamo(){
+  realizarPrestamo() {
     this.router.navigate(['/private/consulta']);
   }
+
+  calculateMontoTotalAPagar(): void {
+    if (this.prestamoSeleccionado) {
+      this.montoTotalAPagar = this.prestamoSeleccionado.detallecuotas.reduce((total, cuota) => total + cuota.cuota, 0);
+    }
+  }
+  
 
 }
   // finalizarPrestamo(index: number): void {
