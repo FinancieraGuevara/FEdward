@@ -60,4 +60,10 @@ export class PrestamoService {
       headers: new HttpHeaders().set('Accept', 'application/pdf') // Esperamos un PDF como respuesta
     });
   }
+
+  getPrestamosCompleted(): Observable<Prestamoresponse[]> {
+    return this.http.get<Prestamoresponse[]>(`${this.apiUrl}/completados`, {
+      withCredentials: true
+    });
+  }
 }

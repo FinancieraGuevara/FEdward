@@ -1,7 +1,20 @@
-export interface Prestamoresponse {
-id:number;
-monto:number;
-cuotas:number;
-intereses:number;
+import { Cronograma } from '../cronograma/cronograma';
 
+export interface Prestamoresponse {
+  id: number;
+  monto: number;
+  cuotas: number;
+  interes: number;
+  solicitanteId: number;
+  username: string;
+  isPayed: boolean;
+  isCompleted: boolean;
+  isDeuda: boolean;
+  isJudicialDeuda: boolean;
+  detallecuotas: Cronograma[];
+  cuotasJudicialesPagadas: number;
+  cuotasJudicialesporpagar: number;
+  cuotasPagadas: number;
+  cuotasporpagar: number;
+  montoTotal: number;
 }

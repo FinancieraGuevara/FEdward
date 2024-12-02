@@ -2,25 +2,23 @@
   <div class="container">
     <h1 class="text-center text-warning mb-4">Préstamos Realizados</h1>
 
-    <div class="table-responsive">
+    <div *ngIf="prestamosCompletados.length > 0; else noData">
       <table class="table table-dark table-hover rounded">
         <thead class="text-warning">
           <tr>
             <th>N° Cronograma</th>
-            <th>Fecha</th>
             <th>Nombre solicitante</th>
-            <th>DNI o RUC</th>
+            <th>Cuotas</th>
             <th>Detalle</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let detallePrestamo of detallePrestamos; let i = index">
-            <td>{{ detallePrestamo.detailId }}</td>
-            <td>{{ detallePrestamo.fechaInicio | date:'dd/MM/yyyy' }}</td>
-            <td>{{ detallePrestamo.solicitante.nombre_completo }}</td>
-            <td>{{ detallePrestamo.solicitante.numero }}</td>
+          <tr *ngFor="let prestamo of prestamosCompletados; let i = index">
+            <td>{{ prestamo.id }}</td>
+            <td>{{ prestamo.username }}</td>
+            <td>{{ prestamo.cuotas }}</td>
             <td>
-              <button class="btn btn-outline-warning" (click)="mostrarDetalle(detallePrestamo)">
+              <button class="btn btn-outline-warning" (click)="mostrarDetalle(prestamo)">
                 <i class="fa-solid fa-arrow-down"></i>
               </button>
             </td>
@@ -28,22 +26,25 @@
         </tbody>
       </table>
     </div>
+    
+    <!-- Mensaje cuando no hay datos -->
+    <ng-template #noData>
+      <p class="text-center text-muted">No hay préstamos completados.</p>
+    </ng-template>
+    
 
-    <div class="row mt-4" *ngIf="detalleSeleccionado">
+    <div class="row mt-4" *ngIf="prestamoSeleccionado">
       <div class="col-md-4">
         <div class="card bg-dark text-light">
           <div class="card-body">
             <h3 class="card-title text-warning">Detalle del Préstamo</h3>
             <ul class="list-unstyled">
-              <li><strong class="text-warning">N° de Cronograma:</strong> {{ detalleSeleccionado.detailId }}</li>
+              <li><strong class="text-warning">N° de Cronograma:</strong> {{ prestamoSeleccionado.id }}</li>
               <li><strong>Moneda:</strong> Soles</li>
-              <li><strong>N° de Cuotas:</strong> {{ detalleSeleccionado.prestamo.cuotas }}</li>
-              <li><strong>Fecha de inicio:</strong> {{ detalleSeleccionado.fechaInicio | date:'dd/MM/yyyy' }}</li>
-              <li><strong class="text-warning">Capital:</strong> S/. {{ detalleSeleccionado.prestamo.monto | number:'1.2-2' }}</li>
-              <li><strong>Tasa de interés efectiva:</strong> {{ detalleSeleccionado.interesTotal | number:'1.2-2' }}%</li>
-              <li><strong>Tasa de interés:</strong> {{ detalleSeleccionado.prestamo.interes | number:'1.2-2' }}%</li>
-              <li><strong>Periodo:</strong> {{ detalleSeleccionado.prestamo.cuotas }} mes(es)</li>
-              <li><strong class="text-warning">Monto Total a Pagar:</strong> S/. {{ detalleSeleccionado.pagarTotal | number:'1.2-2' }}</li>
+              <li><strong>Fecha de inicio:</strong> {{ prestamoSeleccionado.detallecuotas[0].fechaPago }}</li>
+              <li><strong>Tasa de interés efectiva:</strong> {{ prestamoSeleccionado.interes| number:'1.2-2' }}%</li>
+              <li><strong>Periodo:</strong> {{ prestamoSeleccionado.cuotas }} mes(es)</li>
+              <li><strong class="text-warning">Monto Total a Pagar:</strong> S/. {{ prestamoSeleccionado.montoTotal| number:'1.2-2' }}</li>
             </ul>
           </div>
         </div>
@@ -61,17 +62,15 @@
                     <th>Fecha de Pago</th>
                     <th>Cuota</th>
                     <th>Interés</th>
-                    <th>Capital Amortizado</th>
                     <th>Saldo Final</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let cronograma of detalleSeleccionado.cuotas">
+                  <tr *ngFor="let cronograma of prestamoSeleccionado.detallecuotas">
                     <td>{{ cronograma.nmrcuota }}</td>
                     <td>{{ cronograma.fechaPago}}</td>
                     <td>S/. {{ cronograma.cuota | number:'1.2-2' }}</td>
                     <td>S/. {{ cronograma.interes | number:'1.2-2' }}</td>
-                    <td>S/. {{ cronograma.capitalamortizado | number:'1.2-2' }}</td>
                     <td>S/. {{ cronograma.saldofinal | number:'1.2-2' }}</td>
                   </tr>
                 </tbody>

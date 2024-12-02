@@ -16,19 +16,18 @@
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">Contraseña actual</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
                             <input type="password" class="form-control" id="currentPassword" formControlName="currentPassword">
                         </div>
                         <div *ngIf="passwordForm.get('currentPassword')?.invalid && (passwordForm.get('currentPassword')?.dirty || passwordForm.get('currentPassword')?.touched)" class="text-danger mt-1">
                             <small *ngIf="passwordForm.get('currentPassword')?.errors?.['required']">La contraseña actual es requerida.</small>
-                            <small *ngIf="passwordForm.get('currentPassword')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</small>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="newPassword" class="form-label">Nueva contraseña</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
                             <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
                         </div>
                         <div *ngIf="passwordForm.get('newPassword')?.invalid && (passwordForm.get('newPassword')?.dirty || passwordForm.get('newPassword')?.touched)" class="text-danger mt-1">
