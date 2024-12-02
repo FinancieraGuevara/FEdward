@@ -3,10 +3,12 @@ import { FormsModule, ReactiveFormsModule, FormGroup, Validators, FormBuilder, A
 import { CommonModule } from '@angular/common';
 import { PasswordDTO } from '../../../shared/models/password/password';
 import { UserService } from '../../../core/services/Usuario/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
     selector: 'app-cuenta',
+    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, CommonModule],
     templateUrl: './cuenta.component.html',
     styleUrl: './cuenta.component.scss'
@@ -16,7 +18,7 @@ export class CuentaComponent {
   passwordForm: FormGroup;
 
   private fb = inject(FormBuilder);
-
+  private snackbar = inject(MatSnackBar);
   constructor(private userService: UserService) {
     this.passwordForm = this.fb.group({
       currentPassword: ['', Validators.required],
@@ -47,13 +49,25 @@ export class CuentaComponent {
       };
   
       this.userService.changePassword(passwordDTO).subscribe(
-        response => {
-          alert('Contraseña actualizada correctamente');
-        },
-        error => {
-          
+        {
+          next:()=>
+          { 
+            this.showSnackBar("Contraseña actualizada con exito")
+          },
+          error:(error)=>
+          {console.log(error);
+            this.showSnackBar(error.error)
+          }
         }
+        
       );
     }
+  }
+
+  private showSnackBar(message:string) : void{
+    this.snackbar.open(message,'Close',{
+      duration : 3000,
+      verticalPosition : 'top'
+    });
   }
 }

@@ -45,7 +45,8 @@ export class UserService {
   // Método para cambiar contraseña
   changePassword(passwordDTO: PasswordDTO): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/user/edit-password`, passwordDTO, {
-      withCredentials: true
+      withCredentials: true,
+      responseType: 'text' as 'json' // Especificar que esperas un texto como respuesta
     });
   }
 }
