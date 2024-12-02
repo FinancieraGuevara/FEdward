@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { responseSolicitante } from './responseSolicitante';
 import { delay } from 'rxjs';
 
-
+//prueba comit
 @Component({
     selector: 'app-validar-informacion',
     standalone: true,
