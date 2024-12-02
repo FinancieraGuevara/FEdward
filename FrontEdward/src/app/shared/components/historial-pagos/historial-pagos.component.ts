@@ -16,7 +16,7 @@ export class HistorialPagosComponent implements OnInit {
 
   private prestamoService = inject(PrestamoService);
   private router = inject(Router);
-  montoTotalAPagar: number = 0;
+
 
   ngOnInit(): void {
     this.obtenerPrestamosCompletados();
@@ -38,7 +38,7 @@ export class HistorialPagosComponent implements OnInit {
   mostrarDetalle(prestamo: Prestamoresponse): void {
     this.prestamoSeleccionado = prestamo;
     console.log('Préstamo seleccionado:', this.prestamoSeleccionado);
-    this.calculateMontoTotalAPagar(); // Calcular el monto total cuando se seleccione un préstamo
+    console.log(this.prestamoSeleccionado.totalpagar)
   }
   
   
@@ -47,13 +47,8 @@ export class HistorialPagosComponent implements OnInit {
     this.router.navigate(['/private/consulta']);
   }
 
-  calculateMontoTotalAPagar(): void {
-    if (this.prestamoSeleccionado) {
-      this.montoTotalAPagar = this.prestamoSeleccionado.detallecuotas.reduce((total, cuota) => total + cuota.cuota, 0);
-    }
-  }
-  
 
+  
 }
   // finalizarPrestamo(index: number): void {
   //   this.finalizados[index] = true;

@@ -44,7 +44,7 @@
               <li><strong>Fecha de inicio:</strong> {{ prestamoSeleccionado.detallecuotas[0].fechaPago }}</li>
               <li><strong>Tasa de interés efectiva:</strong> {{ prestamoSeleccionado.interes| number:'1.2-2' }}%</li>
               <li><strong>Periodo:</strong> {{ prestamoSeleccionado.cuotas }} mes(es)</li>
-              <li><strong class="text-warning">Monto Total a Pagar:</strong> S/. {{ prestamoSeleccionado.montoTotal| number:'1.2-2' }}</li>
+              <li><strong class="text-warning">Monto Total a Pagar:</strong> S/. {{prestamoSeleccionado.totalpagar}}</li>
             </ul>
           </div>
         </div>

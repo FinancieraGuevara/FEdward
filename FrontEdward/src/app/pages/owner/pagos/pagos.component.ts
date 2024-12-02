@@ -62,14 +62,15 @@ export class PagosComponent {
 
   getEstado(prestamo : Prestamo)
   {
-    if(prestamo.deuda)
-    {
-      return "deuda";
-    }
+
     if(prestamo.judicialDeuda)
     {
       return "deuda judicial"
     }
+    if(prestamo.deuda)
+      {
+        return "deuda";
+      }
     if(prestamo.completed)
       {
         return "completado"
@@ -86,14 +87,15 @@ export class PagosComponent {
 
   cuotaEstado(cuota : Cronograma)
   {
+    if(cuota.isjudicial)
+      {
+        return "judicial"
+      }
     if(cuota.isdeuda)
       {
         return "deuda";
       }
-      if(cuota.isjudicial)
-      {
-        return "judicial"
-      }
+      
       if(cuota.ispayed)
       {
         return "pagado"
