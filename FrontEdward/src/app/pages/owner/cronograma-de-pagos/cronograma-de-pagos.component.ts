@@ -6,29 +6,43 @@ import {Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
 import {DetallePrestamoService} from '../../../core/services/detallePrestamo/detalle-prestamo.service'
 import { PrestamoService } from '../../../core/services/Prestamo/prestamo.service';
+import { Modal } from 'bootstrap';
 
 @Component({
-  selector: 'app-cronograma-de-pagos',
-  standalone: true,
-  imports: [CommonModule], // Agrega CommonModule a los imports
-  templateUrl: './cronograma-de-pagos.component.html',
-  styleUrls: ['./cronograma-de-pagos.component.scss']
+    selector: 'app-cronograma-de-pagos',
+    standalone: true,
+    imports: [CommonModule], // Agrega CommonModule a los imports
+    templateUrl: './cronograma-de-pagos.component.html',
+    styleUrls: ['./cronograma-de-pagos.component.scss']
 })
 
 export class CronogramaDePagosComponent implements OnInit {
-  ultimoDetallePrestamo: DetallePrestamo | null = null;
+  ultimoDetallePrestamo: DetallePrestamo | undefined;
+  
   constructor(private router: Router, private http: HttpClient,private detallePrestamoService: DetallePrestamoService,
     private prestamoService:PrestamoService) {}
 
-  ngOnInit(): void {
-    const ultimoDetalle = localStorage.getItem('ultimoDetallePrestamo');
-    if (ultimoDetalle) {
-      this.ultimoDetallePrestamo = JSON.parse(ultimoDetalle);
-      console.log('Último detalle del préstamo:', this.ultimoDetallePrestamo);
-    } else {
-      console.error('No se encontró el último detalle del préstamo en el localStorage.');
+    ngOnInit(): void {
+      const prestamoId = localStorage.getItem('prestamoId');
+      
+      // Verificar si prestamoId existe
+      if (prestamoId) {
+        const prestamoIdNumber = Number(prestamoId);
+        this.detallePrestamoService.getDetalleByPrestamoId(prestamoIdNumber).subscribe(
+          {
+            next: (data) => {
+              this.ultimoDetallePrestamo = data;
+              console.log('Detalle del préstamo:', data);
+            },
+            error: (err) => {
+              console.error('Error al obtener el detalle del préstamo:', err);
+            }
+          }
+        );
+      } else {
+        console.error('No se encontró el prestamoId en localStorage.');
+      }
     }
-  }
 
   continue() {
     this.router.navigate(['/owner/validar-informacion/tipo-prestamo/detalle-prestamo/prestamo-bien']);
@@ -67,31 +81,22 @@ export class CronogramaDePagosComponent implements OnInit {
   const modalElement = document.getElementById('exampleModal');
 
   // Verifica que modalElement no sea null
-  /* if (modalElement) {
+  if (modalElement) {
     const modal = Modal.getInstance(modalElement);
     
     // Verifica si se ha instanciado el modal
     if (modal) {
       modal.hide(); // Cierra el modal
     }
-  } */
+  }
   }
 
   cancelar (): void{
     this.eliminarPrestamo();
     this.cancelarPrestamo();
     // Obtén el elemento del modal
-  const modalElement = document.getElementById('exampleModal1');
-
-  // Verifica que modalElement no sea null
-  /* if (modalElement) {
-    const modal = Modal.getInstance(modalElement);
-    
-    // Verifica si se ha instanciado el modal
-    if (modal) {
-      modal.hide(); // Cierra el modal
-    }
-  } */
+ 
+   
   }
 
   eliminarPrestamo(): void {

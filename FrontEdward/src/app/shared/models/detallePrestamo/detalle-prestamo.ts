@@ -9,6 +9,6 @@ export interface DetallePrestamo{
     fechaInicio: string;
     pagarTotal: number;
     interesTotal: number;
-    cronograma: Cronograma[];
-    idOwner: number;
+    cuotas: Cronograma[];
+
 }
