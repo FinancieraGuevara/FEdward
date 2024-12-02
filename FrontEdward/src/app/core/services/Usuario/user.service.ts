@@ -1,11 +1,8 @@
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-import { PasswordDTO } from '../../../shared/models/password/password';
-=======
 import { environment } from '../../../../environments/environment';
->>>>>>> 0b5abda2beb401230f397c02a84d94e87846bc74
+import { PasswordDTO } from '../../../shared/models/password/password';
 
 @Injectable({
   providedIn: 'root',
@@ -13,13 +10,7 @@ import { environment } from '../../../../environments/environment';
 export class UserService {
   
   constructor(private http: HttpClient) {}
-<<<<<<< HEAD
-  private apiUrl = 'http://localhost:8080/api/v1';
-  //private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1';
-
-=======
   private apiUrl = `${environment.baseURL}`;
->>>>>>> 0b5abda2beb401230f397c02a84d94e87846bc74
 
   login(username: string, password: string): Observable<any> {
     const body = new HttpParams()
