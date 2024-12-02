@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { SolicitanteService } from '../../../core/services/Solicitante/solicitan
 import { responseSolicitante } from '../validar-informacion/responseSolicitante';
 import { Solicitante } from '../../../shared/models/Solicitante/solicitante';
 import { DetallePrestamoService } from '../../../core/services/detallePrestamo/detalle-prestamo.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
     selector: 'app-ingresar-detalles-de-prestamos-v2',
     standalone: true,
@@ -29,14 +30,14 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
   solicitanteData: Solicitante | null = null;
   myForm?: FormGroup;
 
-  
+  private snackbar = inject(MatSnackBar);
   constructor(
     private fb: FormBuilder, 
     private router: Router,
     private prestamoService: PrestamoService,
     private solicitanteService: SolicitanteService,
     private detallePrestamoService: DetallePrestamoService
-    
+   
   ) {}
 
   ngOnInit(): void {
@@ -95,7 +96,7 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
                   this.router.navigate(['/owner/validar-informacion/tipo-prestamo/detalle-prestamo']);
                 },
                 (error) => {
-                  console.error('Error al crear el préstamo:', error);
+                  this.showSnackBar(error.error.error)
                 }
               );
             } else {
@@ -144,5 +145,12 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
     } else {
       alert('No se encontró un DNI en el localStorage. Por favor, busca un solicitante primero.');
     }
+  }
+
+  private showSnackBar(message:string) : void{
+    this.snackbar.open(message,'Close',{
+      duration : 2000,
+      verticalPosition : 'top'
+    });
   }
 }
