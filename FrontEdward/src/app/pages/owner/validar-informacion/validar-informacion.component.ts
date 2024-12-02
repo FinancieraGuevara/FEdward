@@ -20,6 +20,7 @@ import { delay } from 'rxjs';
 export class ValidarInformacionComponent {
   showError: boolean = false;
   dni: string = '';
+  ruc: string = '';
   selectedTipo: string = '';
   solicitanteData: Solicitante = {} as Solicitante; 
   isLoading = false; 
@@ -36,34 +37,46 @@ export class ValidarInformacionComponent {
   
   buscar() {
     
-      if (this.dni && this.selectedTipo) {
-          this.isLoading = true; 
-          this.solicitanteService.getDataById(this.dni,this.selectedTipo ).subscribe({
-              next: (response: responseSolicitante<Solicitante>) => { // Asegúrate de que response es de tipo responseSolicitante
-                    this.isLoading = false;
-                    this.loading=1;
-                    console.log('Respuesta de la API:', response); // Verifica la estructura real de la respuesta
-                   // Oculta el loader
-                  if (response && response.data) {
-                      this.solicitanteData = response.data; // Ahora puedes asignar data a solicitanteData
-                      console.log('Datos del solicitante:', this.solicitanteData); // Para verificar
-                  } else {
-
-                    alert("ERROR AL OBTENER LOS DATOS")
-                      console.error('No se encontraron datos en la respuesta');      
-                      this.isLoading = false;  
-                      this.loading=0;  
-                  }
-              },
-              error: (error) => {
-               
-                  console.error('Error obteniendo los datos del solicitante', error);
-                  alert("ERROR DATOS NO EXISTEN")
-                  this.isLoading = false;
-                  this.loading=0;  
-              }
-          });
-      } 
+    // Verifica si el tipo de documento seleccionado es 'dni' o 'ruc' y si el campo correspondiente tiene valor
+    if (this.selectedTipo === 'dni' && this.dni) {
+      this.isLoading = true;  // Activa el loading
+      this.solicitanteService.getDataById(this.dni, 'dni').subscribe({
+        next: (response: responseSolicitante<Solicitante>) => {
+          this.isLoading = false;  // Detiene el loading
+          if (response && response.data) {
+            this.solicitanteData = response.data;
+            console.log('Datos del solicitante:', this.solicitanteData);
+          } else {
+            alert("No se encontraron datos para el DNI.");
+          }
+        },
+        error: (error) => {
+          this.isLoading = false;  // Detiene el loading
+          console.error('Error al obtener los datos del solicitante', error);
+          alert("Error al obtener los datos del DNI.");
+        }
+      });
+    } else if (this.selectedTipo === 'ruc' && this.ruc) {
+      this.isLoading = true;  // Activa el loading
+      this.solicitanteService.getDataById(this.ruc, 'ruc').subscribe({
+        next: (response: responseSolicitante<Solicitante>) => {
+          this.isLoading = false;  // Detiene el loading
+          if (response && response.data) {
+            this.solicitanteData = response.data;
+            console.log('Datos del solicitante:', this.solicitanteData);
+          } else {
+            alert("No se encontraron datos para el RUC.");
+          }
+        },
+        error: (error) => {
+          this.isLoading = false;  // Detiene el loading
+          console.error('Error al obtener los datos del solicitante', error);
+          alert("Error al obtener los datos del RUC.");
+        }
+      });
+    } else {
+      alert("Por favor ingrese un número de documento válido.");
+    }
   }
   
   validateNumber(event: KeyboardEvent): void {

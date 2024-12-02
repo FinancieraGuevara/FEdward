@@ -31,11 +31,21 @@
 
         <div class="form-section" *ngIf="!isLoading">
           <h2>Número de Documento</h2>
-          <div class="input-group">
+
+         <!-- Mostrar el campo DNI si 'selectedTipo' es 'dni' -->
+          <div class="input-group" *ngIf="selectedTipo === 'dni'">
             <input type="text" id="dni" class="form-control" placeholder="Ingrese número de documento"
-                   maxlength="11" (keypress)="validateNumber($event)" [(ngModel)]="dni" name="dni" required>
-            <button class="btn btn-search" type="button" (click)="buscar()">Buscar</button>
+                  maxlength="8" (keypress)="validateNumber($event)" [(ngModel)]="dni" name="dni" required>
+            <button class="btn btn-search" type="button" (click)="buscar()">Buscar DNI</button>
           </div>
+
+          <!-- Mostrar el campo RUC si 'selectedTipo' es 'ruc' -->
+          <div class="input-group" *ngIf="selectedTipo === 'ruc'">
+            <input type="text" id="ruc" class="form-control" placeholder="Ingrese número de documento"
+                  maxlength="11" (keypress)="validateNumber($event)" [(ngModel)]="ruc" name="ruc" required>
+            <button class="btn btn-search" type="button" (click)="buscar()">Buscar RUC</button>
+          </div>
+
           <div *ngIf="myForm.controls['dni']?.invalid && myForm.controls['dni']?.touched" class="error-message">
             El número de documento es obligatorio.
           </div>

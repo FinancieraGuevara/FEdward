@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { Solicitante } from '../../../shared/models/Solicitante/solicitante';
 import { responseSolicitante } from '../../../pages/owner/validar-informacion/responseSolicitante';
 import { environment } from '../../../../environments/environment';
+import { DeudoresDTO } from '../../../shared/models/Solicitante/deudor';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,5 +32,12 @@ export class SolicitanteService {
     return this.http.get<Solicitante>(`${this.apiUrl}/solicitantes/searchByDni/${id}`,{ 
       withCredentials: true});
 }
+
+findDeudoresAndMoney(): Observable<DeudoresDTO[]> {
+  return this.http.get<DeudoresDTO[]>(`${this.apiUrl}/solicitantes/deudoresYDinero`, {
+    withCredentials: true
+  });
+}
+
 
 }
