@@ -24,23 +24,19 @@
           </div>
           <div class="detalle-item">
             <p class="etiqueta">Monto del préstamo:</p>
-            <p class="valor">S/ {{ ultimoDetallePrestamo?.prestamo?.monto | number:'1.2-2' }}</p>
+            <p class="valor">S/ {{ultimoDetallePrestamo?.prestamo?.monto}}</p>
           </div>
           <div class="detalle-item">
             <p class="etiqueta">Plazo (N° de cuotas):</p>
-            <p class="valor">{{ ultimoDetallePrestamo?.cronograma?.length }}</p>
+            <p class="valor">{{ultimoDetallePrestamo?.prestamo?.cuotas}}</p>
           </div>
           <div class="detalle-item">
             <p class="etiqueta">Total intereses:</p>
-            <p class="valor">S/ {{ ultimoDetallePrestamo?.interesTotal | number:'1.2-2' }}</p>
+            <p class="valor">S/ {{ ultimoDetallePrestamo?.interesTotal}}</p>
           </div>
           <div class="detalle-item">
             <p class="etiqueta">Monto total a pagar:</p>
-            <p class="valor">S/ {{ ultimoDetallePrestamo?.pagarTotal | number:'1.2-2' }}</p>
-          </div>
-          <div class="detalle-item">
-            <p class="etiqueta">Día de pago:</p>
-            <p class="valor">{{ ultimoDetallePrestamo?.fechaInicio | date:'dd' }}</p>
+            <p class="valor">S/ {{ ultimoDetallePrestamo?.pagarTotal}}</p>
           </div>
         </div>
       </section>
@@ -60,7 +56,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let cuota of ultimoDetallePrestamo?.cronograma">
+              <tr *ngFor="let cuota of ultimoDetallePrestamo?.cuotas">
                 <td>{{ cuota.nmrcuota }}</td>
                 <td>{{ cuota.fechaPago }}</td>
                 <td>S/ {{ cuota.saldofinal | number:'1.2-2' }}</td>

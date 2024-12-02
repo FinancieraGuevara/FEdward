@@ -4,11 +4,10 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-owner-layout',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink],
-  templateUrl: './owner-layout.component.html',
-  styleUrl: './owner-layout.component.scss'
+    selector: 'app-owner-layout',
+    imports: [RouterOutlet, RouterLink],
+    templateUrl: './owner-layout.component.html',
+    styleUrl: './owner-layout.component.scss'
 })
 export class OwnerLayoutComponent {
 

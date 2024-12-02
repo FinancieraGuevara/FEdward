@@ -6,11 +6,10 @@ import { UserService } from '../../../core/services/Usuario/user.service';
 
 
 @Component({
-  selector: 'app-cuenta',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './cuenta.component.html',
-  styleUrl: './cuenta.component.scss'
+    selector: 'app-cuenta',
+    imports: [FormsModule, ReactiveFormsModule, CommonModule],
+    templateUrl: './cuenta.component.html',
+    styleUrl: './cuenta.component.scss'
 })
 export class CuentaComponent {
   

@@ -11,12 +11,11 @@ import { delay } from 'rxjs';
 
 
 @Component({
-  selector: 'app-validar-informacion',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './validar-informacion.component.html',
-  styleUrl: './validar-informacion.component.scss'
-  
+    selector: 'app-validar-informacion',
+    standalone: true,
+    imports: [CommonModule, FormsModule],
+    templateUrl: './validar-informacion.component.html',
+    styleUrl: './validar-informacion.component.scss'
 })
 export class ValidarInformacionComponent {
   showError: boolean = false;
@@ -36,8 +35,8 @@ export class ValidarInformacionComponent {
   }
   
   buscar() {
-    this.router.navigate(['/owner/validar-informacion/tipo-prestamo']);
-      /* if (this.dni && this.selectedTipo) {
+    
+      if (this.dni && this.selectedTipo) {
           this.isLoading = true; 
           this.solicitanteService.getDataById(this.dni,this.selectedTipo ).subscribe({
               next: (response: responseSolicitante<Solicitante>) => { // Asegúrate de que response es de tipo responseSolicitante
@@ -64,7 +63,7 @@ export class ValidarInformacionComponent {
                   this.loading=0;  
               }
           });
-      } */
+      } 
   }
   
   validateNumber(event: KeyboardEvent): void {
@@ -78,13 +77,10 @@ export class ValidarInformacionComponent {
       localStorage.setItem('dniSolicitante', this.dni); 
       localStorage.setItem('tipodocumento',this.selectedTipo);
       console.log("datos guardados",localStorage.getItem('dniSolicitante'));
-      this.router.navigate(['/private/consulta/prestamo']);
+      this.router.navigate(['/owner/validar-informacion/tipo-prestamo']);
     } else {
       alert('Por favor, busca un DNI válido antes de continuar.');
     }
-  }
-  volver(): void {
-    this.router.navigate(['/private/historialprestamos']);
   }
 
 

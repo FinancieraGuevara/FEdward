@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { Prestamoresponse } from '../../models/PrestamoResponse/prestamoresponse';
 import { PrestamoService } from '../../../core/services/Prestamo/prestamo.service';
 @Component({
-  selector: 'app-historial-pagos',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './historial-pagos.component.html',
-  styleUrl: './historial-pagos.component.scss'
+    selector: 'app-historial-pagos',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './historial-pagos.component.html',
+    styleUrl: './historial-pagos.component.scss'
 })
 export class HistorialPagosComponent implements OnInit {
   prestamosCompletados: Prestamoresponse[] = [] as Prestamoresponse[]; // Cambié el nombre de la propiedad
