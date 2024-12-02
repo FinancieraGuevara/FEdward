@@ -3,6 +3,7 @@ import { Cronograma } from '../cronograma/cronograma';
 export interface Prestamoresponse {
   id: number;
   monto: number;
+  totalpagar:number;
   cuotas: number;
   interes: number;
   solicitanteId: number;
