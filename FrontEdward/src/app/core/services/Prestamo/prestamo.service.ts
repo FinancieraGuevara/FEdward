@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Prestamorequest } from '../../../shared/models/PrestamoRequest/prestamorequest';
 import { Prestamoresponse } from '../../../shared/models/PrestamoResponse/prestamoresponse';
+import { environment } from '../../../../environments/environment';
+import { Prestamo } from '../../../shared/models/Prestamo/prestamo';
 export interface PrestamoResponseDTO { 
   monto: number;
   cuotas: number; 
@@ -18,7 +20,7 @@ export interface PrestamoRequestDTO {
 })
 export class PrestamoService {
 
-  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1/prestamos';
+  private apiUrl = `${environment.baseURL}/prestamos`;
 
   constructor(private http: HttpClient) {}
 
@@ -27,10 +29,35 @@ export class PrestamoService {
       withCredentials: true
     });
   }
+  
   deletePrestamo(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`, {
       withCredentials: true
     });
   }
 
+  getAllPrestamos(): Observable<Prestamo[]> {
+    const url = `${this.apiUrl}`;
+    return this.http.get<Prestamo[]>(url);
+  }
+
+  getPrestamoById(idPrestamo: number): Observable<Prestamo> {
+    const url = `${this.apiUrl}/${idPrestamo}`;
+    return this.http.get<Prestamo>(url);
+  }
+
+  setCuotaPagada(idPrestamo: number, nmrcuota: number): Observable<any> {
+    const url = `${environment.baseURL}/pagar/prestamo/${idPrestamo}/cuota/${nmrcuota}`;
+    return this.http.put<any>(url, null); 
+  }
+  
+  downloadComprobantePago(prestamoId: number, nroCuota: number): Observable<Blob> {
+    const url = `${environment.baseURL}/reports/prestamo/${prestamoId}/cuota/${nroCuota}`;
+    
+    // Hacemos una solicitud GET para descargar el archivo PDF
+    return this.http.get(url, {
+      responseType: 'blob', // Especificamos que esperamos un archivo binario
+      headers: new HttpHeaders().set('Accept', 'application/pdf') // Esperamos un PDF como respuesta
+    });
+  }
 }

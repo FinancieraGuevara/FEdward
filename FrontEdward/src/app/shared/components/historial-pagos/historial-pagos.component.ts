@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-historial-pagos',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './historial-pagos.component.html',
-  styleUrl: './historial-pagos.component.scss'
+    selector: 'app-historial-pagos',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './historial-pagos.component.html',
+    styleUrl: './historial-pagos.component.scss'
 })
 export class HistorialPagosComponent {
 

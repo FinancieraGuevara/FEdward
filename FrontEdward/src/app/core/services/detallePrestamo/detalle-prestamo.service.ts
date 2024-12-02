@@ -12,7 +12,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class DetallePrestamoService {
 
-    private baseURL = `${environment.baseURL}/auth`;
+    private baseURL = `${environment.baseURL}/prestamos`;
+    private baseURL2=`${environment.baseURL}/private/detalleprestamos`
     private http = inject(HttpClient);
 
 
@@ -34,8 +35,8 @@ export class DetallePrestamoService {
     );
   }
 
-  getDetallePrestamo(solicitanteId: number): Observable<DetallePrestamo> {
-    return this.http.get<DetallePrestamo>(`${this.baseURL}/${solicitanteId}`,{withCredentials: true}).pipe(
+  getDetallePrestamo(prestamoId: number): Observable<DetallePrestamo> {
+    return this.http.get<DetallePrestamo>(`${this.baseURL}/${prestamoId}`,{withCredentials: true}).pipe(
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Ocurrió un error al obtener el detalle del prestamo';
           if (error.error instanceof ErrorEvent) {
@@ -69,10 +70,15 @@ export class DetallePrestamoService {
   }
 
   exportPDF(solicitanteId: number): Observable<Blob> {
-    return this.http.get(`https://financiera-back-2a2b.onrender.com/api/v1/reports/pdf/${solicitanteId}`, {
+    return this.http.get(`${environment.baseURL}/reports/pdf/${solicitanteId}`, {
       responseType: 'blob',
       withCredentials: true // Incluir cookies
     })
+  }
+
+  getDetalleByPrestamoId(prestamoId:number):Observable<DetallePrestamo>
+  {
+    return this.http.get<DetallePrestamo>(`${this.baseURL2}/prestamoId/${prestamoId}`)
   }
 
 }

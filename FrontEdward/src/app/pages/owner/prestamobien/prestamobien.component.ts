@@ -10,11 +10,10 @@ import { DetallePrestamo } from '../../../shared/models/detallePrestamo/detalle-
 
 
 @Component({
-  selector: 'app-prestamobien',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
-  templateUrl: './prestamobien.component.html',
-  styleUrls: ['./prestamobien.component.scss']
+    selector: 'app-prestamobien',
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
+    templateUrl: './prestamobien.component.html',
+    styleUrls: ['./prestamobien.component.scss']
 })
 export class PrestamobienComponent {
   ultimoDetallePrestamo: DetallePrestamo | null = null;
@@ -26,18 +25,6 @@ export class PrestamobienComponent {
   volver(): void {
     this.router.navigate(['/owner/historial']);
   }
-  // prestamo: Prestamo = new Prestamo(0); // Inicializar con un valor por defecto
-
-  // constructor() {
-  //   const prestamoData = localStorage.getItem('prestamo');
-  //   if (prestamoData) {
-  //     this.prestamo = JSON.parse(prestamoData);
-  //   }
-  // }
-
-  // get monto(): number {
-  //   return this.prestamo.monto;
-  // }
 
   downloadPdf() {
     const solicitanteIdStr = localStorage.getItem('solicitanteIdStr');
@@ -58,13 +45,24 @@ export class PrestamobienComponent {
   }
 
   ultimoDetail(){
-    const ultimoDetalle = localStorage.getItem('ultimoDetallePrestamo');
-    if (ultimoDetalle) {
-      this.ultimoDetallePrestamo = JSON.parse(ultimoDetalle);
-      console.log('Último detalle del préstamo:', this.ultimoDetallePrestamo);
+    const prestamoId = localStorage.getItem('prestamoId');
+    if (prestamoId) {
+      const prestamoIdNumber = Number(prestamoId);
+      this.detallePrestamoService.getDetalleByPrestamoId(prestamoIdNumber).subscribe(
+        {
+          next: (data) => {
+            this.ultimoDetallePrestamo = data;
+            console.log('Detalle del préstamo:', data);
+          },
+          error: (err) => {
+            console.error('Error al obtener el detalle del préstamo:', err);
+          }
+        }
+      );
     } else {
-      console.error('No se encontró el último detalle del préstamo en el localStorage.');
+      console.error('No se encontró el prestamoId en localStorage.');
     }
+    
   }
   
 }

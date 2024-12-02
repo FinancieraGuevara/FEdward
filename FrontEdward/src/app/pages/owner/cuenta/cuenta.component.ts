@@ -3,11 +3,10 @@ import { FormsModule, ReactiveFormsModule, FormGroup, Validators, FormBuilder, A
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-cuenta',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './cuenta.component.html',
-  styleUrl: './cuenta.component.scss'
+    selector: 'app-cuenta',
+    imports: [FormsModule, ReactiveFormsModule, CommonModule],
+    templateUrl: './cuenta.component.html',
+    styleUrl: './cuenta.component.scss'
 })
 export class CuentaComponent {
   

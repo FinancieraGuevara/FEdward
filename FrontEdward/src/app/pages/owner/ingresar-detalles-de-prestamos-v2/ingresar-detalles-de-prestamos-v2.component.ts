@@ -10,11 +10,11 @@ import { responseSolicitante } from '../validar-informacion/responseSolicitante'
 import { Solicitante } from '../../../shared/models/Solicitante/solicitante';
 import { DetallePrestamoService } from '../../../core/services/detallePrestamo/detalle-prestamo.service';
 @Component({
-  selector: 'app-ingresar-detalles-de-prestamos-v2',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
-  templateUrl: './ingresar-detalles-de-prestamos-v2.component.html',
-  styleUrls: ['./ingresar-detalles-de-prestamos-v2.component.scss']
+    selector: 'app-ingresar-detalles-de-prestamos-v2',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
+    templateUrl: './ingresar-detalles-de-prestamos-v2.component.html',
+    styleUrls: ['./ingresar-detalles-de-prestamos-v2.component.scss']
 })
 export class IngresarDetallesDePrestamosV2Component implements OnInit {
   
@@ -49,18 +49,6 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
     this.router.navigate(['/private/consulta']);
   }
 
-  /* cerrarSesion() {
-    this.detallePrestamoService.logout().subscribe({
-        next: (response) => {
-            console.log('Sesión cerrada:', response);
-            this.router.navigate(['/login']);
-        },
-        error: (error) => {
-            console.error('Error al cerrar sesión:', error);
-          
-        }
-    });
-  } */
 
   selectTime(time: number): void {
     this.selectedTimeButton = time;
@@ -76,13 +64,12 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
 
   onSubmit(): void {
     if (this.prestamoForm.valid) {
-      // Lógica para enviar el formulario
+      this.continue();
     }
   }
 
   continue(): void {
-    this.router.navigate(['/owner/validar-informacion/tipo-prestamo/detalle-prestamo']);
-    /* const dniSolicitante = localStorage.getItem('dniSolicitante'); 
+    const dniSolicitante = localStorage.getItem('dniSolicitante'); 
     const selectedTipo = localStorage.getItem('tipodocumento');
     if (dniSolicitante && selectedTipo) {
       this.solicitanteService.getDataById(dniSolicitante, selectedTipo).subscribe({
@@ -92,37 +79,20 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
             localStorage.setItem('dniSolicitante', dniSolicitante);
             console.log("Datos del solicitante guardados", this.solicitanteData);
             
-            // Verifica que solicitanteData tenga un ID válido antes de continuar
+          
             const solicitanteId = this.solicitanteData.id;
             if (solicitanteId) {
               const prestamoRequest: Prestamorequest = {
                 monto: this.prestamoForm.get('monto')?.value,
                 cuotas: this.selectedTimeButton,
               };
+
               localStorage.setItem('solicitanteIdStr',String(this.solicitanteData.id))
               this.prestamoService.createPrestamo(solicitanteId, prestamoRequest).subscribe(
                 (response) => {
-                  // Guardar el ID del préstamo en el localStorage
-                  const prestamoId = response.id; // Asegúrate de que esta es la estructura correcta
-                  localStorage.setItem('prestamoId', prestamoId.toString());
-                  // Obtener los detalles del préstamo
-                  this.detallePrestamoService.getPrestamoDetails(solicitanteId).subscribe(
-                    (detalles: any) => {
-                      if (detalles && detalles.length > 0) {
-                        const ultimoDetalle = detalles[detalles.length - 1];
-                        console.log('Último detalle del préstamo:', ultimoDetalle);
-                        // Guardar el último detalle en el localStorage
-                        localStorage.setItem('ultimoDetallePrestamo', JSON.stringify(ultimoDetalle));
-                        // Navegar a la vista de cronograma de pagos
-                        this.router.navigate(['/private/consulta/prestamo/cronograma']);
-                      } else {
-                        console.error('No se encontraron detalles del préstamo.');
-                      }
-                    },
-                    (error: any) => {
-                      console.error('Error al obtener los detalles del préstamo:', error);
-                    }
-                  );
+                  alert("prestamo creado")
+                  localStorage.setItem('prestamoId',response.id.toString());
+                  this.router.navigate(['/owner/validar-informacion/tipo-prestamo/detalle-prestamo']);
                 },
                 (error) => {
                   console.error('Error al crear el préstamo:', error);
@@ -142,7 +112,7 @@ export class IngresarDetallesDePrestamosV2Component implements OnInit {
       });
     } else {
       alert('Por favor, busca un DNI válido antes de continuar.');
-    } */
+    }
   }
 
   volver(): void {

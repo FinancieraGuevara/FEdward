@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   
   constructor(private http: HttpClient) {}
-  private apiUrl = 'https://financiera-back-2a2b.onrender.com/api/v1';
+  private apiUrl = `${environment.baseURL}`;
 
   login(username: string, password: string): Observable<any> {
     const body = new HttpParams()
